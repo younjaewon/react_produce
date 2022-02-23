@@ -4,17 +4,21 @@ import InputGroup from "react-bootstrap/InputGroup";
 import GridTemplate from "../utilcomponents/GridTemplate";
 import InputForm from "../utilcomponents/InputForm";
 import ButtonCOmponent from "../utilcomponents/ButtonComponent";
+import { ReflexContainer, ReflexElement, ReflexSplitter } from "react-reflex";
+import "react-reflex/styles.css";
 
 const MaterialOutManage = () => {
   const [viewGrid, setViewGrid] = useState({
-    column: [
-      { key: "a", width: 100, label: "ID", align: "center" },
-      { key: "b", width: 150, label: "Title" },
-    ],
-    data: [{ value: { a: "1", b: "1" } }],
+    column: [{}],
+    data: [{ value: {} }],
   });
 
   const [detailGrid, setDetailGrid] = useState("");
+  const [searchData, setSearchData] = useState({});
+
+  const handleChange = (e) => {
+    setSearchData({ ...searchData, [e.target.name]: e.target.value });
+  };
 
   return (
     <div style={{ margin: "10px" }}>
@@ -48,15 +52,26 @@ const MaterialOutManage = () => {
           <InputForm>상태</InputForm>
         </InputGroup>
       </div>
-      <div style={{ display: "flex" }}>
-        <div style={{ marginRight: "10px" }}>
-          <span>자재요청 목록</span>
-          <GridTemplate column={viewGrid} />
-        </div>
-        <div style={{ marginRight: "10px" }}>
-          <span>자재요청 상세</span>
-          <GridTemplate />
-        </div>
+      <div className="gridLayoutSplitter">
+        <ReflexContainer orientation="vertical">
+          <ReflexElement
+            flex={0.5}
+            minSize={200}
+            style={{ overflowY: "hidden" }}
+          >
+            <div style={{ marginRight: "10px" }}>
+              <span>자재요청 목록</span>
+              <GridTemplate gridData={viewGrid} />
+            </div>
+          </ReflexElement>
+          <ReflexSplitter propagate />
+          <ReflexElement minSize={200} style={{ overflowY: "hidden" }}>
+            <div style={{ marginRight: "10px", marginLeft: "10px" }}>
+              <span>자재요청 상세</span>
+              <GridTemplate />
+            </div>
+          </ReflexElement>
+        </ReflexContainer>
       </div>
     </div>
   );
