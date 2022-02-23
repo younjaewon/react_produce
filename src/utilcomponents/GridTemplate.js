@@ -2,15 +2,12 @@ import React, { useEffect, useState } from "react";
 import { DataGrid, IDataGrid } from "axui-datagrid";
 import "axui-datagrid/style.css";
 
-let pushColumn = [];
-
-const GridTemplate = ({ dimensions, gridData }) => {
+const GridTemplate = ({ gridData }) => {
   const [width, setWidth] = useState(1200);
   const [height, setHeight] = useState(500);
 
-  console.log(dimensions);
-
   const metaColumn = [
+    // column의 데이터는 [{}] 값으로 받아와서 세팅해주면 됩니다.
     { key: "a", width: 100, label: "불출상태", align: "center" },
     { key: "b", width: 100, label: "요청번호" },
     { key: "c", width: 100, label: "요청일자" },
@@ -21,6 +18,7 @@ const GridTemplate = ({ dimensions, gridData }) => {
   ];
 
   const data = [
+    //grid의 데이터는 [{value:{}}] 값으로 받아와서 세팅해주면 됩니다.
     {
       value: {
         a: "불출",

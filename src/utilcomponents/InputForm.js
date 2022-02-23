@@ -14,6 +14,9 @@ const InputForm = ({ name, value, changeHandle, children }) => {
         aria-label="Username"
         aria-describedby="basic-addon1"
         style={{ border: "1px solid #e7e1e1", marginRight: "10px" }}
+        onChange={(e) => {
+          changeHandle(e);
+        }}
       />
     </>
   );
