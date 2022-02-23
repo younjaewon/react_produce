@@ -1,0 +1,1 @@
+export const APIURL= "http://b454-175-119-149-98.ngrok.io/process";
