@@ -16,7 +16,7 @@ const ProduceGridTemplate = () => {
     { key: "processNo", label: "번호", align: "center" },
     { key: "trueFalse", label: "사용유무", align: "center" },
     { key: "outsourcingType", label: "타입", align: "center" },
-    { key: "remark", label: "비고", align: "center" }
+    { key: "remark", width: 150, label: "비고", align: "center" }
   ];
 
  useEffect(() => {
