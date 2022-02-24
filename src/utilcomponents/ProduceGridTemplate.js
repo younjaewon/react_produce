@@ -35,6 +35,9 @@ for(let i=0; i<data.length; i++){
 console.log(ldata)
 console.log(item)
 
+const goItem = () => {
+  
+}
 
   return (
     <>
