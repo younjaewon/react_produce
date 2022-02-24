@@ -3,7 +3,6 @@ import InputGroup from "react-bootstrap/InputGroup";
 
 import InputForm from "../utilcomponents/InputForm";
 import ButtonCOmponent from "../utilcomponents/ButtonComponent";
-import TextForm from "../utilcomponents/textForm";
 import ResizingProGridTemplate from "../utilcomponents/ResizingProGridTemplate";
 import TestResizingGridTemplate from "../utilcomponents/TestResizingGridTemplate";
 
