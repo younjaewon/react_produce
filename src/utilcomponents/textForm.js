@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import InputForm from "./InputForm";
 import InputGroup from "react-bootstrap/InputGroup";
-import ProduceGridTemplate from "./ProduceGridTemplate";
 
 const TextForm = (props) => {
     const [item, setItem] = useState();

@@ -2,6 +2,7 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import ProduceStandardManage from "./components/ProduceStandardManage";
 import { useState } from "react";
+import SelfStandardManage from "./components/SelfStandardManage";
 
 function App() {
   const [viewContent, setViewContent] = useState("produceStanding");
@@ -20,13 +21,14 @@ function App() {
         </button>
         <button
           style={{ border: "none", margin: "5px" }}
-          name="c"
+          name="SelfStanding"
           onClick={changeView}
         >
           자체기준관리
         </button>
 
         {viewContent === 'produceStanding' ? <ProduceStandardManage/> : ""}
+        {viewContent === 'SelfStanding' ? <SelfStandardManage/> : ""}
     </div>
   );
 }

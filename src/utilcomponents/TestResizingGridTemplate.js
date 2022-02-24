@@ -27,7 +27,7 @@ const MyBox = styled.div`
 
 
 
-const ResizingProGridTemplate = (props) => {
+const TestResizingGridTemplate = (props) => {
   const [boxWidth, setBoxWidth] = useState("800");
   const [boxHeight, setBoxHeight] = useState("600");
   const containerRef = useRef();
@@ -103,4 +103,4 @@ for(let i=0; i<data.length; i++){
   );
 };
 
-export default ResizingProGridTemplate;
+export default TestResizingGridTemplate;

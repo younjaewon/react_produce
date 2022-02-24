@@ -5,14 +5,13 @@ import InputForm from "../utilcomponents/InputForm";
 import ButtonCOmponent from "../utilcomponents/ButtonComponent";
 import TextForm from "../utilcomponents/textForm";
 import ResizingProGridTemplate from "../utilcomponents/ResizingProGridTemplate";
+import TestResizingGridTemplate from "../utilcomponents/TestResizingGridTemplate";
 
-const ProduceStandardManage = () => {
+const SelfStandardManage = () => {
     const [item, setItem] = useState()
 
     const creatData = () => {console.log(1)}
-    const update = () => {}
-    const search = () => {} 
-    const save = () => {}
+    const search = () => {}
     
 
     return(
@@ -22,12 +21,10 @@ const ProduceStandardManage = () => {
                     display: "flex",
                     justifyContent: "space-between"
                 }}>
-                <h3>제조표준관리</h3>
+                <h3>자체기준관리</h3>
                 <div>
                     <div>
                         <ButtonCOmponent variant="primary" onClick={creatData}>신규</ButtonCOmponent>
-                        <ButtonCOmponent variant="primary" onClick={update}>수정</ButtonCOmponent>
-                        <ButtonCOmponent variant="primary" onClick={save}>저장</ButtonCOmponent>
                         <ButtonCOmponent variant="primary" onClick={search}>검색</ButtonCOmponent>
                     </div>
                 </div>
@@ -36,24 +33,18 @@ const ProduceStandardManage = () => {
                 borderTop: "1px solid",
                 borderBottom: "1px solid",
                 marginBottom: "10px"
-            }}>
-                <InputGroup>
-                    <InputForm>공정명</InputForm>
-                    <InputForm>사용유무</InputForm>
-                </InputGroup>
-            </div>
+            }} />
             <div style={{ display:"flex" }}>
                 <div style={{ marginRight:"10px"}}>
-                    <span>제조 목록</span>
-                    
-                    <ResizingProGridTemplate setItem={setItem} />
+                    <span>기종 목록</span>
+                    <TestResizingGridTemplate setItem={setItem} />
                 </div>
                 <div style={{ marginRight:"10px"}}>
-                    <span>상세</span>
-                    <TextForm detailItem={item} />
+                    <span>기종별 지침서 목록</span>
+                    <TestResizingGridTemplate setItem={setItem} />
                 </div>
             </div>
         </div>
     );
 }
-export default ProduceStandardManage;
+export default SelfStandardManage;
