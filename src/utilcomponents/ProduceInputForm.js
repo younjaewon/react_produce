@@ -12,8 +12,9 @@ const ProduceInputForm = ({ name, value, changeHandle, children }) => {
         aria-label="Ujsername"
         aria-describedby="basic-addon1"
         style={{ border: "1px solid #e7e1e1" }}
+        name={name}
         value={value}
-        onChange={(changeHandle)=>console.log(changeHandle)}
+        onChange={(e)=> {changeHandle(e)}}
       />
     </>
   );

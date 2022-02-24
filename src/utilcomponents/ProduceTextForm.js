@@ -4,25 +4,25 @@ import InputGroup from "react-bootstrap/InputGroup";
 import ButtonComponent from "./ButtonComponent";
 
 const ProduceTextForm = (props) => {
-    
+    const handleChange = (e) => {
+        props.setItem({...props.detailItem, [e.target.name]: e.target.value});
+    }
 
     return(
     <>
         <InputGroup>
-            <ProduceInputForm value={props.detailItem.trueFalse} changeHandle={(e)=>{
-                props.setItem({...props.detailItem, props,detailItem,trueFalse: e});
-            }}>사용유무</ProduceInputForm>
-            <ProduceInputForm value={props.detailItem.custCd}>코드</ProduceInputForm>
+            <ProduceInputForm name="trueFalse" value={props.detailItem.trueFalse} changeHandle={handleChange} >사용유무</ProduceInputForm>
+            <ProduceInputForm name="custCd" value={props.detailItem.custCd} changeHandle={handleChange}>코드</ProduceInputForm>
         </InputGroup>
         <InputGroup>
-            <ProduceInputForm value={props.detailItem.processNo}>번호</ProduceInputForm>
-            <ProduceInputForm value={props.detailItem.processName}>이름</ProduceInputForm>
+            <ProduceInputForm name="processNo" value={props.detailItem.processNo} changeHandle={handleChange}>번호</ProduceInputForm>
+            <ProduceInputForm name="processName" value={props.detailItem.processName} changeHandle={handleChange}>이름</ProduceInputForm>
         </InputGroup>
         <InputGroup>
-            <ProduceInputForm value={props.detailItem.outsourcingType}>타입</ProduceInputForm>
+            <ProduceInputForm name="outsourcingType" value={props.detailItem.outsourcingType} changeHandle={handleChange}>타입</ProduceInputForm>
         </InputGroup>
         <InputGroup>
-            <ProduceInputForm value={props.detailItem.remark}>비고</ProduceInputForm>
+            <ProduceInputForm name="remark" value={props.detailItem.remark} changeHandle={handleChange}>비고</ProduceInputForm>
         </InputGroup>
     </>
     );

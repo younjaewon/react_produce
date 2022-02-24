@@ -34,14 +34,6 @@ const ProduceStandardManage = () => {
         }else{
         }
     }
-    const clean = () => {
-        const c = window.confirm("clean?");
-        if(c){
-            setItem("")
-        }else{
-        }
-    }
-    
     
 
     return(
@@ -78,7 +70,6 @@ const ProduceStandardManage = () => {
                 </div>
                 <div style={{ marginRight:"10px"}}>
                     <span>상세</span>
-                    <ButtonCOmponent variant="primary" onClick={clean}>신규</ButtonCOmponent>
                     <ProduceTextForm detailItem={item} setItem={setItem}/>
                 </div>
             </div>
