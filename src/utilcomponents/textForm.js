@@ -1,12 +1,14 @@
 import React from "react";
 import InputForm from "./InputForm";
 import InputGroup from "react-bootstrap/InputGroup";
+import ProduceGridTemplate from "./ProduceGridTemplate";
 
 const TextForm = () => {
+
     return(
     <>
         <InputGroup>
-            <InputForm value={"Y"}>사용유무</InputForm>
+            <InputForm>사용유무</InputForm>
             <InputForm>코드</InputForm>
         </InputGroup>
         <InputGroup>

@@ -44,7 +44,7 @@ const ProduceStandardManage = () => {
                 </div>
                 <div style={{ marginRight:"10px"}}>
                     <span>상세</span>
-                    <TextForm></TextForm>
+                    <TextForm />
                 </div>
             </div>
         </div>
