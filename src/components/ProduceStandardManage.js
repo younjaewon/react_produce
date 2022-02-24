@@ -7,7 +7,12 @@ import ProduceTextForm from "../utilcomponents/ProduceTextForm";
 import ResizingProGridTemplate from "../utilcomponents/ResizingProGridTemplate";
 
 const ProduceStandardManage = () => {
-    const [item, setItem] = useState();
+    const [item, setItem] = useState({trueFalse:"",
+                                custCd:"",
+                                processNo:"",
+                                processName:"",
+                                outsourcingType:"",
+                                remark:""});
 
     const search = () => {}
     const update = () => {
@@ -20,8 +25,7 @@ const ProduceStandardManage = () => {
     const save = () => {
         const s = window.confirm("save?");
         if(s){
-            
-        }else{            
+        }else{
         }
     }
     const creatData = () => {
@@ -75,7 +79,7 @@ const ProduceStandardManage = () => {
                 <div style={{ marginRight:"10px"}}>
                     <span>상세</span>
                     <ButtonCOmponent variant="primary" onClick={clean}>신규</ButtonCOmponent>
-                    <ProduceTextForm detailItem={item}/>
+                    <ProduceTextForm detailItem={item} setItem={setItem}/>
                 </div>
             </div>
         </div>

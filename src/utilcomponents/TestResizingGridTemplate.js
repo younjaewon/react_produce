@@ -5,7 +5,7 @@ import Segment from "../utils/Segment";
 import Wrapper from "../utils/Wrapper";
 import { DataGrid } from "axui-datagrid";
 import axios from "axios";
-import { APIURL } from "../api";
+import { PROAPIURL } from "../api";
 import "axui-datagrid/style.css";
 
 const MyBox = styled.div`
@@ -57,7 +57,7 @@ const TestResizingGridTemplate = (props) => {
   ];
 
   useEffect(() => {
-    axios.get(APIURL)
+    axios.get(PROAPIURL)
     .then((response)=>{
         setData(response.data)
     })
