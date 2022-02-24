@@ -1,11 +1,14 @@
-import React,{useState} from "react";
+import React from "react";
 import InputGroup from "react-bootstrap/InputGroup";
 
 import ProduceGridTemplate from "../utilcomponents/ProduceGridTemplate";
 import InputForm from "../utilcomponents/InputForm";
 import ButtonCOmponent from "../utilcomponents/ButtonComponent";
+import TextForm from "../utilcomponents/textForm";
 
 const ProduceStandardManage = () => {
+    const save = (e) => {}
+    const search = (e) => {} 
     
 
     return(
@@ -18,8 +21,8 @@ const ProduceStandardManage = () => {
                 <h3>제조표준관리</h3>
                 <div>
                     <div>
-                        <ButtonCOmponent variant="primary">저장</ButtonCOmponent>
-                        <ButtonCOmponent variant="primary">검색</ButtonCOmponent>
+                        <ButtonCOmponent variant="primary" onClick={save}>저장</ButtonCOmponent>
+                        <ButtonCOmponent variant="primary" onClick={search}>검색</ButtonCOmponent>
                     </div>
                 </div>
             </div>
@@ -41,20 +44,7 @@ const ProduceStandardManage = () => {
                 </div>
                 <div style={{ marginRight:"10px"}}>
                     <span>상세</span>
-                    <InputGroup>
-                        <InputForm>사용유무</InputForm>
-                        <InputForm>코드</InputForm>
-                    </InputGroup>
-                    <InputGroup>
-                        <InputForm>번호</InputForm>
-                        <InputForm>이름</InputForm>
-                    </InputGroup>
-                    <InputGroup>
-                        <InputForm>순서</InputForm>
-                    </InputGroup>
-                    <InputGroup>
-                        <InputForm>비고</InputForm>
-                    </InputGroup>
+                    <TextForm></TextForm>
                 </div>
             </div>
         </div>

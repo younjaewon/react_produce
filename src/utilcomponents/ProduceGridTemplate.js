@@ -3,12 +3,12 @@ import { DataGrid, IDataGrid } from "axui-datagrid";
 import "axui-datagrid/style.css";
 import axios from "axios";
 import { APIURL } from "../api";
-import async from "async";
 
-const ProduceGridTemplate = () => {
+ const ProduceGridTemplate = () => {
   const [width, setWidth] = useState(700);
   const [height, setHeight] = useState(500);
-  const [data, setData] = useState([])
+  const [data, setData] = useState([]);
+  const [item, setItem] = useState()
 
   const columns = [
     { key: "custCd", width: 100, label: "코드", align: "center" },
@@ -27,23 +27,33 @@ const ProduceGridTemplate = () => {
     .catch((err) => console.log(err)); 
  },[])
 
-console.log(data[0])
-const rdata = [{value:data[0]}]
-console.log(data)
+const ldata=[];
+for(let i=0; i<data.length; i++){
+    ldata.push({value:data[i]})
+};
+
+console.log(ldata)
+console.log(item)
+
 
   return (
+    <>
     <div style={{ border: "1px solid #d9d9d9", width, height }}>
       <DataGrid
         width={width}
         height={height}
         style={{ fontSize: "12px" }}
         columns={columns}
-        data={rdata}
+        data={ldata}
         dataLength={data.length}
         options={{}}
+        onClick={({item}) => {
+          setItem(item);
+        }}
       />
     </div>
-  );
+    </>
+    );
+    
 };
-
 export default ProduceGridTemplate;
