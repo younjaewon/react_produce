@@ -14,11 +14,13 @@ function App() {
     setViewContent(e.target.name);
   };
   return (
-    <Routes>
-      <Route exact path="/" element={<MaterialOutManage />} />
-      <Route exact path="/require" element={<RequirementManage />} />
-      <Route exact path="/require/:bomId" element={<RequirementBom />} />
-    </Routes>
+    <>
+      <Routes>
+        <Route exact path="/" element={<MaterialOutManage />} />
+        <Route exact path="/require" element={<RequirementManage />} />
+        <Route exact path="/require/:bomId" element={<RequirementBom />} />
+      </Routes>
+    </>
   );
 }
 

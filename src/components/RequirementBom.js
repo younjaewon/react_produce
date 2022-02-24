@@ -35,7 +35,7 @@ const RequirementBom = () => {
 
   useEffect(() => {
     axios
-      .get(`${BASE_URL}/bomItem?bomIndexNo=${params.bomId}`)
+      .get(`${BASE_URL}/bomItem?bomIndexNo=${params.bomId}`) // bom Item 조회
       .then((response) => {
         gridDataSet(response.data); // grid DataForm으로 변경
       })

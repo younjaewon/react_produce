@@ -58,7 +58,7 @@ const data = [
   },
 ];
 
-const ResizingGridTemplate = ({ gridData, type }) => {
+const ResizingGridTemplate = ({ gridData, type, detailView }) => {
   const [boxWidth, setBoxWidth] = useState("1200");
   const [boxHeight, setBoxHeight] = useState("600");
   const containerRef = useRef();
@@ -79,6 +79,8 @@ const ResizingGridTemplate = ({ gridData, type }) => {
   const handleGridClick = (item, value, type) => {
     if (type === "require") {
       window.location.href = "/require/" + item.value.indexNo;
+    } else if (type === "material") {
+      detailView(item);
     }
   };
 
