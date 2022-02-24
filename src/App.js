@@ -1,3 +1,4 @@
+import React from "react";
 import "./App.css";
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -12,7 +13,7 @@ function App() {
     setViewContent(e.target.name);
   };
   return (
-    <>
+    <div>
       <div>
         <button
           style={{ border: "none", margin: "5px" }}
@@ -33,7 +34,7 @@ function App() {
         {viewContent === "material" ? <MaterialOutManage /> : ""}
         {viewContent === "require" ? <RequirementManage /> : ""}
       </div>
-    </>
+    </div>
   );
 }
 
