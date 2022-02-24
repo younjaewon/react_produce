@@ -42,7 +42,7 @@ const ProduceStandardManage = () => {
             <div style={{ display:"flex" }}>
                 <div style={{ marginRight:"10px"}}>
                     <span>제조 목록</span>
-                    <ProduceGridTemplate setItem={setItem} />
+                    <ResizingProGridTemplate setItem={setItem} />
                 </div>
                 <div style={{ marginRight:"10px"}}>
                     <span>상세</span>

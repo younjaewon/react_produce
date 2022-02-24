@@ -1,8 +1,8 @@
 import React, { useRef, useState, useEffect } from "react";
 import styled from "styled-components";
 import MouseEventSubscribe from "../utils/mouseEventSubscribe";
-// import Segment from "../utils/Segment";
-// import Wrapper from "../utils/Wrapper";
+import Segment from "../utils/Segment";
+import Wrapper from "../utils/Wrapper";
 import { DataGrid } from "axui-datagrid";
 import axios from "axios";
 import { APIURL } from "../api";
@@ -26,12 +26,11 @@ const MyBox = styled.div`
 
 
 
-const ResizingProGridTemplate = () => {
-  const [boxWidth, setBoxWidth] = useState("1200");
+const ResizingProGridTemplate = (props) => {
+  const [boxWidth, setBoxWidth] = useState("800");
   const [boxHeight, setBoxHeight] = useState("600");
   const containerRef = useRef();
   const [data, setData] = useState([]);
-  const [item, setItem] = useState()
 
   const handleColResizerMove = (e) => {
     const { left: containerLeft, top: containerTop } =
@@ -70,8 +69,6 @@ for(let i=0; i<data.length; i++){
 };
 
 console.log(ldata)
-console.log(item)
-
 
 
   return (
@@ -94,6 +91,9 @@ console.log(item)
               data={ldata}
               dataLength={data.length}
               options={{}}
+              onClick={({item})=>{
+                props.setItem(item.value)
+              }}
             />
             <div className="resizer" onMouseDownCapture={handleColResizerMove}>
               ⇆
