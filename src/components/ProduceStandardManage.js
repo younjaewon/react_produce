@@ -11,6 +11,7 @@ const ProduceStandardManage = () => {
     const [item, setItem] = useState()
     const save = (e) => {}
     const search = (e) => {} 
+    const creatData = (e) => {}
     
 
     return(
@@ -23,6 +24,7 @@ const ProduceStandardManage = () => {
                 <h3>제조표준관리</h3>
                 <div>
                     <div>
+                        <ButtonCOmponent variant="primary" onClick={creatData}>생성</ButtonCOmponent>
                         <ButtonCOmponent variant="primary" onClick={save}>저장</ButtonCOmponent>
                         <ButtonCOmponent variant="primary" onClick={search}>검색</ButtonCOmponent>
                     </div>
@@ -42,6 +44,7 @@ const ProduceStandardManage = () => {
             <div style={{ display:"flex" }}>
                 <div style={{ marginRight:"10px"}}>
                     <span>제조 목록</span>
+                    
                     <ResizingProGridTemplate setItem={setItem} />
                 </div>
                 <div style={{ marginRight:"10px"}}>

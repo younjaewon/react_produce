@@ -5,16 +5,11 @@ import ProduceGridTemplate from "./ProduceGridTemplate";
 
 const TextForm = (props) => {
     const [item, setItem] = useState();
-    console.log(props.detailItem)
     
     useEffect(()=>{
         setItem(props.detailItem)
     })
     
-
-    
-
-
     return(
     <>
         <InputGroup>
