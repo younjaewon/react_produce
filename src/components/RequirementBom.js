@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import ResizingGridTemplate from "../utilcomponents/ResizingGridTemplate";
+import ButtonComponent from "../utilcomponents/ButtonComponent";
 import InputGroup from "react-bootstrap/InputGroup";
 import InputForm from "../utilcomponents/InputForm";
-import ButtonCOmponent from "../utilcomponents/ButtonComponent";
 import axios from "axios";
 import { BASE_URL } from "../lib/api";
+import { useParams } from "react-router-dom";
 
-const RequirementManage = () => {
-  const [searchData, setSearchData] = useState({}); // 검색 데이터 state로 생성
+const RequirementBom = () => {
+  const params = useParams();
   const [viewGrid, setViewGrid] = useState({
     column: [
       {
@@ -18,7 +19,7 @@ const RequirementManage = () => {
       },
       { key: "bomItemName", width: 200, label: "BOM Name", align: "center" },
       {
-        key: "bomVersionNumber",
+        key: "bomVersion",
         width: 100,
         label: "BOM version",
         align: "center",
@@ -30,13 +31,22 @@ const RequirementManage = () => {
       { key: "vendor", width: 100, label: "Vendor", align: "center" },
     ],
     data: [],
-  }); // 소요량관리 목록 그리드 데이터 컬럼과 데이터를 받아와야 합니다.
+  });
 
   useEffect(() => {
     axios
-      .get(`${BASE_URL}/bom`)
+      .get(`${BASE_URL}/bomItem?bomIndexNo=${params.bomId}`)
       .then((response) => {
         gridDataSet(response.data); // grid DataForm으로 변경
+      })
+      .catch((Error) => {
+        console.log(Error);
+      });
+
+    axios
+      .get(`${BASE_URL}/bom?bomIndexNo=${params.bomId}`)
+      .then((response) => {
+        console.log(response.data);
       })
       .catch((Error) => {
         console.log(Error);
@@ -58,16 +68,8 @@ const RequirementManage = () => {
     }));
   };
 
-  const handleChange = (e) => {
-    setSearchData({ ...searchData, [e.target.name]: e.target.value });
-  };
-
   const handleSave = () => {
     console.log("저장");
-  };
-
-  const handleSearch = () => {
-    console.log("검색");
   };
 
   return (
@@ -79,18 +81,16 @@ const RequirementManage = () => {
           justifyContent: "space-between",
         }}
       >
-        <h3>소요량 관리</h3>
+        <h3>BOM</h3>
         <div>
           <div>
-            <ButtonCOmponent variant="primary" onClick={handleSave}>
+            <ButtonComponent variant="primary" onClick={handleSave}>
               저장
-            </ButtonCOmponent>
-            <ButtonCOmponent variant="primary" onClick={handleSearch}>
-              검색
-            </ButtonCOmponent>
+            </ButtonComponent>
           </div>
         </div>
       </div>
+
       <div
         style={{
           borderTop: "1px solid",
@@ -99,22 +99,20 @@ const RequirementManage = () => {
         }}
       >
         <InputGroup>
-          <InputForm name="bomNumber" changeHandle={handleChange}>
-            BOM넘버
+          <InputForm name="bomNumber" value="">
+            partNumber
           </InputForm>
-          <InputForm name="bomName" changeHandle={handleChange}>
-            BOM명
+          <InputForm name="bomName" value="">
+            partName
           </InputForm>
         </InputGroup>
       </div>
+
       <div style={{ display: "flex" }}>
-        <div style={{ marginRight: "10px" }}>
-          <span>BOM 목록</span>
-          <ResizingGridTemplate gridData={viewGrid} type="require" />
-        </div>
+        <ResizingGridTemplate gridData={viewGrid} />
       </div>
     </div>
   );
 };
 
-export default RequirementManage;
+export default RequirementBom;

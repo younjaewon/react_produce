@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import InputGroup from "react-bootstrap/InputGroup";
-import GridTemplate from "../utilcomponents/GridTemplate";
 import ResizingGridTemplate from "../utilcomponents/ResizingGridTemplate";
+import InputGroup from "react-bootstrap/InputGroup";
 import InputForm from "../utilcomponents/InputForm";
 import ButtonCOmponent from "../utilcomponents/ButtonComponent";
 import { ReflexContainer, ReflexElement, ReflexSplitter } from "react-reflex";
@@ -16,17 +15,14 @@ const MaterialOutManage = () => {
   const [detailGrid, setDetailGrid] = useState(""); // 자재요청 상세 그리드 데이터 컬럼과 데이터를 받아와야 합니다.
   const [searchData, setSearchData] = useState({}); // 검색 데이터 state로 생성
 
-  // 검색데이터 InputForm컴포넌트에 전달하여 onChange시 실행되는 함수 입니다.
   const handleChange = (e) => {
     setSearchData({ ...searchData, [e.target.name]: e.target.value });
   };
 
-  // 그리드 데이터를 수정 후 server에 저장하는 함수 입니다.
   const handleSave = () => {
     console.log("저장");
   };
 
-  // searchData를 server에 전달하여 검색하는 함수입니다.
   const handleSearch = () => {
     console.log("검색");
   };
@@ -40,7 +36,7 @@ const MaterialOutManage = () => {
           justifyContent: "space-between",
         }}
       >
-        <h3>자재준비관리</h3>
+        <h3>자재준비 관리</h3>
         <div>
           <div>
             <ButtonCOmponent variant="primary" onClick={handleSave}>

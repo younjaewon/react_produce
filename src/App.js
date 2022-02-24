@@ -1,9 +1,10 @@
 import React from "react";
 import "./App.css";
-import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import MaterialOutManage from "./components/MaterialOutManage";
 import RequirementManage from "./components/RequirementManage";
+import RequirementBom from "./components/RequirementBom";
+import { Route, Routes } from "react-router-dom";
 import { useState } from "react";
 
 function App() {
@@ -13,28 +14,11 @@ function App() {
     setViewContent(e.target.name);
   };
   return (
-    <div>
-      <div>
-        <button
-          style={{ border: "none", margin: "5px" }}
-          name="material"
-          onClick={changeView}
-        >
-          자재준비관리
-        </button>
-        <button
-          style={{ border: "none", margin: "5px" }}
-          name="require"
-          onClick={changeView}
-        >
-          소요량관리
-        </button>
-      </div>
-      <div>
-        {viewContent === "material" ? <MaterialOutManage /> : ""}
-        {viewContent === "require" ? <RequirementManage /> : ""}
-      </div>
-    </div>
+    <Routes>
+      <Route exact path="/" element={<MaterialOutManage />} />
+      <Route exact path="/require" element={<RequirementManage />} />
+      <Route exact path="/require/:bomId" element={<RequirementBom />} />
+    </Routes>
   );
 }
 

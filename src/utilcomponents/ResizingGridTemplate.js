@@ -4,6 +4,7 @@ import MouseEventSubscribe from "../utils/mouseEventSubscribe";
 import Segment from "../utils/Segment";
 import Wrapper from "../utils/Wrapper";
 import { DataGrid } from "axui-datagrid";
+import "axui-datagrid/style.css";
 
 const MyBox = styled.div`
   position: relative;
@@ -23,7 +24,6 @@ const MyBox = styled.div`
 `;
 
 const metaColumn = [
-  // column의 데이터는 [{}] 값으로 받아와서 세팅해주면 됩니다.
   { key: "a", width: 100, label: "불출상태", align: "center" },
   { key: "b", width: 100, label: "요청번호" },
   { key: "c", width: 100, label: "요청일자" },
@@ -34,7 +34,6 @@ const metaColumn = [
 ];
 
 const data = [
-  //grid의 데이터는 [{value:{}}] 값으로 받아와서 세팅해주면 됩니다.
   {
     value: {
       a: "불출",
@@ -59,11 +58,10 @@ const data = [
   },
 ];
 
-const ResizingGridTemplate = () => {
+const ResizingGridTemplate = ({ gridData, type }) => {
   const [boxWidth, setBoxWidth] = useState("1200");
   const [boxHeight, setBoxHeight] = useState("600");
   const containerRef = useRef();
-
   const handleColResizerMove = (e) => {
     const { left: containerLeft, top: containerTop } =
       containerRef.current.getBoundingClientRect();
@@ -76,6 +74,12 @@ const ResizingGridTemplate = () => {
         // resize 종료 (마우스 업 이벤트 발생.)
       }
     );
+  };
+
+  const handleGridClick = (item, value, type) => {
+    if (type === "require") {
+      window.location.href = "/require/" + item.value.indexNo;
+    }
   };
 
   return (
@@ -94,9 +98,14 @@ const ResizingGridTemplate = () => {
               width={boxWidth - 2}
               height={boxHeight - 2}
               style={{ fontSize: "12px" }}
-              columns={metaColumn}
-              data={data}
-              dataLength={data.length}
+              columns={gridData != undefined ? gridData.column : metaColumn}
+              data={gridData != undefined ? gridData.data : data}
+              dataLength={
+                gridData != undefined ? gridData.data.length : data.length
+              }
+              onClick={({ e, item, value, rowIndex, colIndex }) => {
+                handleGridClick(item, value, type);
+              }}
               options={{}}
             />
             <div className="resizer" onMouseDownCapture={handleColResizerMove}>
