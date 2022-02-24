@@ -24,7 +24,7 @@ const ProduceStandardManage = () => {
                 <h3>제조표준관리</h3>
                 <div>
                     <div>
-                        <ButtonCOmponent variant="primary" onClick={creatData}>생성</ButtonCOmponent>
+                        <ButtonCOmponent variant="primary" onClick={creatData}>신규</ButtonCOmponent>
                         <ButtonCOmponent variant="primary" onClick={save}>저장</ButtonCOmponent>
                         <ButtonCOmponent variant="primary" onClick={search}>검색</ButtonCOmponent>
                     </div>
