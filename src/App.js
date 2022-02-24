@@ -1,3 +1,4 @@
+import React from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import MaterialOutManage from "./components/MaterialOutManage";
@@ -11,7 +12,7 @@ function App() {
     setViewContent(e.target.name);
   };
   return (
-    <>
+    <div>
       <div>
         <button
           style={{ border: "none", margin: "5px" }}
@@ -32,7 +33,7 @@ function App() {
         {viewContent === "material" ? <MaterialOutManage /> : ""}
         {viewContent === "require" ? <RequirementManage /> : ""}
       </div>
-    </>
+    </div>
   );
 }
 

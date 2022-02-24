@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import InputGroup from "react-bootstrap/InputGroup";
-
 import GridTemplate from "../utilcomponents/GridTemplate";
+import ResizingGridTemplate from "../utilcomponents/ResizingGridTemplate";
 import InputForm from "../utilcomponents/InputForm";
 import ButtonCOmponent from "../utilcomponents/ButtonComponent";
 import { ReflexContainer, ReflexElement, ReflexSplitter } from "react-reflex";
@@ -77,26 +77,16 @@ const MaterialOutManage = () => {
           </InputForm>
         </InputGroup>
       </div>
-      <div className="gridLayoutSplitter">
-        <ReflexContainer orientation="vertical">
-          <ReflexElement
-            flex={0.5}
-            minSize={200}
-            style={{ overflowY: "hidden" }}
-          >
-            <div style={{ marginRight: "10px" }}>
-              <span>자재요청 목록</span>
-              <GridTemplate gridData={viewGrid} />
-            </div>
-          </ReflexElement>
-          <ReflexSplitter propagate style={{ width: "5px" }} />
-          <ReflexElement minSize={200} style={{ overflowY: "hidden" }}>
-            <div style={{ marginRight: "10px", marginLeft: "10px" }}>
-              <span>자재요청 상세</span>
-              <GridTemplate />
-            </div>
-          </ReflexElement>
-        </ReflexContainer>
+      <div style={{ display: "flex" }}>
+        <div style={{ marginRight: "10px" }}>
+          <span>자재요청 목록</span>
+          <ResizingGridTemplate />
+        </div>
+
+        <div style={{ marginRight: "10px", marginLeft: "10px" }}>
+          <span>자재요청 상세</span>
+          <ResizingGridTemplate />
+        </div>
       </div>
     </div>
   );
