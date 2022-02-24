@@ -1,12 +1,14 @@
-import React from "react";
+import React,{useState} from "react";
 import InputGroup from "react-bootstrap/InputGroup";
 
 import ProduceGridTemplate from "../utilcomponents/ProduceGridTemplate";
 import InputForm from "../utilcomponents/InputForm";
 import ButtonCOmponent from "../utilcomponents/ButtonComponent";
 import TextForm from "../utilcomponents/textForm";
+import ResizingProGridTemplate from "../utilcomponents/ResizingProGridTemplate";
 
 const ProduceStandardManage = () => {
+    const [item, setItem] = useState()
     const save = (e) => {}
     const search = (e) => {} 
     
@@ -40,11 +42,11 @@ const ProduceStandardManage = () => {
             <div style={{ display:"flex" }}>
                 <div style={{ marginRight:"10px"}}>
                     <span>제조 목록</span>
-                    <ProduceGridTemplate />
+                    <ProduceGridTemplate setItem={setItem} />
                 </div>
                 <div style={{ marginRight:"10px"}}>
                     <span>상세</span>
-                    <TextForm />
+                    <TextForm detailItem={item} />
                 </div>
             </div>
         </div>

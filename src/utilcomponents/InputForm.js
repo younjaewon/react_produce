@@ -9,10 +9,10 @@ const InputForm = ({ name, value, changeHandle, children }) => {
       <Form.Control
         type="text"
         placeholder={children}
-        aria-label="Username"
+        aria-label="Ujsername"
         aria-describedby="basic-addon1"
         style={{ border: "1px solid #e7e1e1" }}
-        
+        value={value}
       />
     </>
   );

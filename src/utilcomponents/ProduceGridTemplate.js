@@ -4,11 +4,12 @@ import "axui-datagrid/style.css";
 import axios from "axios";
 import { APIURL } from "../api";
 
- const ProduceGridTemplate = () => {
+ const ProduceGridTemplate = (props) => {
+
   const [width, setWidth] = useState(700);
   const [height, setHeight] = useState(500);
   const [data, setData] = useState([]);
-  const [item, setItem] = useState()
+ 
 
   const columns = [
     { key: "custCd", width: 100, label: "코드", align: "center" },
@@ -33,7 +34,6 @@ for(let i=0; i<data.length; i++){
 };
 
 console.log(ldata)
-console.log(item)
 
 const goItem = () => {
   
@@ -50,8 +50,8 @@ const goItem = () => {
         data={ldata}
         dataLength={data.length}
         options={{}}
-        onClick={({item}) => {
-          setItem(item);
+        onClick={({item})=>{
+          props.setItem(item.value)
         }}
       />
     </div>
