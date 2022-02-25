@@ -2,7 +2,7 @@ import React, { Children } from "react";
 import InputGroup from "react-bootstrap/InputGroup";
 import Form from "react-bootstrap/Form";
 
-const ProduceInputForm = ({ name, value, changeHandle, children }) => {
+ const ProduceInputForm = ({ name, value, changeHandle, children }) => {
   return (
     <>
       <InputGroup.Text id="basic-addon1">{children}</InputGroup.Text>
@@ -19,5 +19,4 @@ const ProduceInputForm = ({ name, value, changeHandle, children }) => {
     </>
   );
 };
-
 export default ProduceInputForm;

@@ -1,1 +1,1 @@
-export const PROAPIURL= "http://7977-175-119-149-98.ngrok.io/process";
+export const PROAPIURL= "http://32bd-175-119-149-98.ngrok.io";

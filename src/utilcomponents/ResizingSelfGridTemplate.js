@@ -7,6 +7,8 @@ import { DataGrid } from "axui-datagrid";
 import axios from "axios";
 import { PROAPIURL } from "../api";
 import "axui-datagrid/style.css";
+import file from "../file.png";
+import nofile from "../nofile.png";
 
 const MyBox = styled.div`
   position: relative;
@@ -27,11 +29,14 @@ const MyBox = styled.div`
 
 
 
-const ResizingProGridTemplate = (props) => {
+const ResizingSelfGridTemplate = (props) => {
   const [boxWidth, setBoxWidth] = useState("800");
   const [boxHeight, setBoxHeight] = useState("600");
   const containerRef = useRef();
   const [data, setData] = useState([]);
+  const [guideExist, setGuideExist] = useState([]);
+
+  
 
   const handleColResizerMove = (e) => {
     const { left: containerLeft, top: containerTop } =
@@ -48,28 +53,43 @@ const ResizingProGridTemplate = (props) => {
   };
 
   const columns = [
-    { key: "custCd", width: 100, label: "코드", align: "center" },
-    { key: "processName", width: 150, label: "이름", align: "center" },
-    { key: "processNo", label: "번호", align: "center" },
-    { key: "trueFalse", label: "사용유무", align: "center" },
-    { key: "processType", label: "타입", align: "center" },
-    { key: "remark", width: 150, label: "비고", align: "center" }
+    { key: "modelName", width: 150, label: "기종", align: "center" },
+    { key: "isGuideExist", width: 150, label: "메뉴얼", align: "center" }
   ];
 
   useEffect(() => {
-    axios.get(PROAPIURL+"/process")
+    axios.get(PROAPIURL+"/model")
     .then((response)=>{
         setData(response.data)
     })
     .catch((err) => console.log(err)); 
  },[])
 
- const ldata=[];
+ const f = () => {
+   return(
+    <img style={{ width: "20px", height: "20px" }} src={file} />
+   );
+ }
+ const nof = () => {
+  return(
+    <img style={{ width: "20px", height: "20px" }} src={nofile} />
+  );
+}
+
+
+
+const ldata=[];
 for(let i=0; i<data.length; i++){
-    ldata.push({value:data[i]})
+  
+    ldata.push({value:{indexNo: data[i].indexNo, modelName:data[i].modelName, 
+      isGuideExist: data[i].isGuideExist === 0 ? nof():f()   }})
+    
 };
+    
+
 
   return (
+    <>
     <div>
       <Wrapper>
         <Segment padded>
@@ -90,7 +110,7 @@ for(let i=0; i<data.length; i++){
               dataLength={data.length}
               options={{}}
               onClick={({item})=>{
-                props.setItem(item.value)
+                props.setItem(item.value.indexNo)
               }}
             />
             <div className="resizer" onMouseDownCapture={handleColResizerMove}>
@@ -100,7 +120,8 @@ for(let i=0; i<data.length; i++){
         </Segment>
       </Wrapper>
     </div>
+    </>
   );
 };
 
-export default ResizingProGridTemplate;
+export default ResizingSelfGridTemplate;

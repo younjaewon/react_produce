@@ -1,36 +1,90 @@
 import React,{useState} from "react";
 import InputGroup from "react-bootstrap/InputGroup";
+import { PROAPIURL } from "../api";
 
 import InputForm from "../utilcomponents/InputForm";
 import ButtonCOmponent from "../utilcomponents/ButtonComponent";
 import ProduceTextForm from "../utilcomponents/ProduceTextForm";
 import ResizingProGridTemplate from "../utilcomponents/ResizingProGridTemplate";
+import axios from "axios";
 
 const ProduceStandardManage = () => {
-    const [item, setItem] = useState({trueFalse:"",
-                                custCd:"",
-                                processNo:"",
-                                processName:"",
-                                outsourcingType:"",
-                                remark:""});
+    const [item, setItem] = useState({
+        trueFalse:"",
+        custCd:"",
+        processNo:"",
+        processName:"",
+        processType:"",
+        remark:""
+    });
 
-    const search = () => {}
-    const update = () => {
-        const u = window.confirm("update?");
-        if(u){
-            setItem("");
+    const clean = () => {
+        const cl = window.confirm("상세 내용을 초기화 하시겠습니까?");
+        if(cl){
+            setItem({
+                indexNo:"",
+                trueFalse:"",
+                custCd:"",
+                processNo:"",
+                processName:"",
+                processType:"",
+                remark:""
+            });
         }else{            
         }
     }
+
+    const search = () => {
+        console.log(PROAPIURL)
+    }
+    
     const save = () => {
-        const s = window.confirm("save?");
+        const s = window.confirm("변경사항을 저장하시겠습니까");
         if(s){
+            axios.put(PROAPIURL+"/process", {
+                indexNo: item.indexNo,
+                trueFalse: item.trueFalse,
+                custCd: item.custCd,
+                processNo: item.processNo,
+                processName: item.processName,
+                processType: item.processType,
+                outsourcingType: item.outsourcingType,
+                remark: item.remark
+            }).then((response) => {
+                console.log("save",response);
+                window.location.reload("/");
+            }).catch((error) => {
+                console.log(error);
+            });
         }else{
         }
     }
+
     const creatData = () => {
+        const process = {
+            trueFalse: item.trueFalse,
+            custCd: item.custCd,
+            processNo: item.processNo,
+            processName: item.processName,
+            processType: item.processType,
+            remark: item.remark 
+        }
+        const formData = new FormData;
+        formData.append(
+            "process",
+            new Blob([JSON.stringify(process)], { type: "application/json" })
+          );
+
         const c = window.confirm("create?");
         if(c){
+            axios.post(PROAPIURL+"/process", formData, {
+                headers: {"content-type":"multipart/form-data"}
+            }).then((response) => {
+                console.log("create",response);
+                window.location.reload("/");
+            }).catch((err) => {
+                console.log(err);
+            });
         }else{
         }
     }
@@ -45,9 +99,8 @@ const ProduceStandardManage = () => {
                 }}>
                 <h3>제조표준관리</h3>
                 <div>
-                    <div>
+                    <div><ButtonCOmponent variant="primary" onClick={clean}>상세초기화</ButtonCOmponent>
                         <ButtonCOmponent variant="primary" onClick={creatData}>추가</ButtonCOmponent>
-                        <ButtonCOmponent variant="primary" onClick={update}>수정</ButtonCOmponent>
                         <ButtonCOmponent variant="primary" onClick={save}>저장</ButtonCOmponent>
                         <ButtonCOmponent variant="primary" onClick={search}>검색</ButtonCOmponent>
                     </div>

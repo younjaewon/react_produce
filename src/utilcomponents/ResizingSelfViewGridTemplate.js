@@ -7,6 +7,7 @@ import { DataGrid } from "axui-datagrid";
 import axios from "axios";
 import { PROAPIURL } from "../api";
 import "axui-datagrid/style.css";
+import ButtonComponent from "./ButtonComponent";
 
 const MyBox = styled.div`
   position: relative;
@@ -27,7 +28,7 @@ const MyBox = styled.div`
 
 
 
-const TestResizingGridTemplate = (props) => {
+const ResizingSelfViewGridTemplate = (props) => {
   const [boxWidth, setBoxWidth] = useState("800");
   const [boxHeight, setBoxHeight] = useState("600");
   const containerRef = useRef();
@@ -48,24 +49,23 @@ const TestResizingGridTemplate = (props) => {
   };
 
   const columns = [
-    { key: "custCd", width: 100, label: "코드", align: "center" },
-    { key: "processName", width: 150, label: "이름", align: "center" },
-    { key: "processNo", label: "번호", align: "center" },
-    { key: "trueFalse", label: "사용유무", align: "center" },
-    { key: "processType", label: "타입", align: "center" },
-    { key: "remark", width: 150, label: "비고", align: "center" }
+    { key: "guideType", width: 100, label: "기종유형", align: "center" },
+    { key: "revisionNo", width: 100, label: "버전", align: "center" },
+    { key: "fileName", width: 100, label: "파일이름", align: "center" },
+    { key: "filePath", width: 100, label: "파일경로", align: "center" }
   ];
 
   useEffect(() => {
-    axios.get(PROAPIURL)
+    axios.get(PROAPIURL+"/modelGuide?modelIndexNo="+props.item)
     .then((response)=>{
         setData(response.data)
     })
     .catch((err) => console.log(err)); 
- },[])
+ },[props.item])
 
  const ldata=[];
 for(let i=0; i<data.length; i++){
+    console.log(data);
     ldata.push({value:data[i]})
 };
 
@@ -90,7 +90,6 @@ for(let i=0; i<data.length; i++){
               dataLength={data.length}
               options={{}}
               onClick={({item})=>{
-                props.setItem(item.value)
               }}
             />
             <div className="resizer" onMouseDownCapture={handleColResizerMove}>
@@ -103,4 +102,4 @@ for(let i=0; i<data.length; i++){
   );
 };
 
-export default TestResizingGridTemplate;
+export default ResizingSelfViewGridTemplate;
