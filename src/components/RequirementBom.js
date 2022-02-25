@@ -48,9 +48,7 @@ const RequirementBom = () => {
       .get(`${BASE_URL}/bom?bomIndexNo=${params.bomId}`)
       .then((response) => {
         setBomInput(response.data[0]);
-        console.log(response.data[0]);
         console.log(bomInput);
-        debugger;
       })
       .catch((Error) => {
         console.log(Error);
