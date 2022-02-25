@@ -9,6 +9,7 @@ import { useParams } from "react-router-dom";
 
 const RequirementBom = () => {
   const params = useParams();
+  const [bomInput, setBomInput] = useState({});
   const [viewGrid, setViewGrid] = useState({
     column: [
       {
@@ -46,7 +47,10 @@ const RequirementBom = () => {
     axios
       .get(`${BASE_URL}/bom?bomIndexNo=${params.bomId}`)
       .then((response) => {
-        console.log(response.data);
+        setBomInput(response.data[0]);
+        console.log(response.data[0]);
+        console.log(bomInput);
+        debugger;
       })
       .catch((Error) => {
         console.log(Error);
@@ -99,11 +103,11 @@ const RequirementBom = () => {
         }}
       >
         <InputGroup>
-          <InputForm name="bomNumber" value="">
-            partNumber
+          <InputForm name="bomNumber" value={bomInput.bomPartNumber}>
+            bomPartNumber
           </InputForm>
-          <InputForm name="bomName" value="">
-            partName
+          <InputForm name="bomName" value={bomInput.bomName}>
+            bomName
           </InputForm>
         </InputGroup>
       </div>

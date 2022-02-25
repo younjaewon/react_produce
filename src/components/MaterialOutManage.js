@@ -141,7 +141,6 @@ const MaterialOutManage = () => {
 
   const handleSave = async () => {
     console.log(addMaterial);
-    debugger;
     const frm = new FormData();
     frm.append(
       "materialRequest",
@@ -232,9 +231,6 @@ const MaterialOutManage = () => {
         <h3>자재준비 관리</h3>
         <div>
           <div>
-            <ButtonCOmponent variant="primary" onClick={handleSave}>
-              저장
-            </ButtonCOmponent>
             <ButtonCOmponent variant="primary" onClick={handleSearch}>
               검색
             </ButtonCOmponent>
@@ -351,7 +347,6 @@ const MaterialOutManage = () => {
           <ResizingGridTemplate
             gridData={viewGrid}
             type="material"
-            mode="mod"
             detailView={handleDetailView}
             handleAction={updateDataSet}
           />

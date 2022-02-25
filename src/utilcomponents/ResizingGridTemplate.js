@@ -58,13 +58,7 @@ const data = [
   },
 ];
 
-const ResizingGridTemplate = ({
-  gridData,
-  type,
-  detailView,
-  mode,
-  handleAction,
-}) => {
+const ResizingGridTemplate = ({ gridData, type, detailView, handleAction }) => {
   const [boxWidth, setBoxWidth] = useState("1200");
   const [boxHeight, setBoxHeight] = useState("600");
   const containerRef = useRef();
@@ -83,15 +77,16 @@ const ResizingGridTemplate = ({
     );
   };
 
-  const handleGridClick = (item, value, type) => {
+  const handleGridClick = (item, value, type, ri, ci) => {
     if (type === "require") {
-      window.location.href = "/require/" + item.value.indexNo;
-    } else if (type === "material") {
-      if (mode === "mod") {
-        handleAction(item);
+      if (ci === 7) {
+        window.location.href = "/require/" + item.value.indexNo;
       } else {
-        detailView(item);
+        handleAction(item);
       }
+    } else if (type === "material") {
+      handleAction(item);
+      detailView(item);
     }
   };
 
@@ -117,7 +112,7 @@ const ResizingGridTemplate = ({
                 gridData.data.length != 0 ? gridData.data.length : data.length
               }
               onClick={({ e, item, value, rowIndex, colIndex }) => {
-                handleGridClick(item, value, type);
+                handleGridClick(item, value, type, rowIndex, colIndex);
               }}
               options={{}}
             />
