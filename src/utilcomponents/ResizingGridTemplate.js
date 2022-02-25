@@ -58,10 +58,17 @@ const data = [
   },
 ];
 
-const ResizingGridTemplate = ({ gridData, type, detailView }) => {
+const ResizingGridTemplate = ({
+  gridData,
+  type,
+  detailView,
+  mode,
+  handleAction,
+}) => {
   const [boxWidth, setBoxWidth] = useState("1200");
   const [boxHeight, setBoxHeight] = useState("600");
   const containerRef = useRef();
+
   const handleColResizerMove = (e) => {
     const { left: containerLeft, top: containerTop } =
       containerRef.current.getBoundingClientRect();
@@ -80,7 +87,11 @@ const ResizingGridTemplate = ({ gridData, type, detailView }) => {
     if (type === "require") {
       window.location.href = "/require/" + item.value.indexNo;
     } else if (type === "material") {
-      detailView(item);
+      if (mode === "mod") {
+        handleAction(item);
+      } else {
+        detailView(item);
+      }
     }
   };
 
@@ -100,10 +111,10 @@ const ResizingGridTemplate = ({ gridData, type, detailView }) => {
               width={boxWidth - 2}
               height={boxHeight - 2}
               style={{ fontSize: "12px" }}
-              columns={gridData != undefined ? gridData.column : metaColumn}
-              data={gridData != undefined ? gridData.data : data}
+              columns={gridData.data.length != 0 ? gridData.column : metaColumn}
+              data={gridData.data.length != 0 ? gridData.data : data}
               dataLength={
-                gridData != undefined ? gridData.data.length : data.length
+                gridData.data.length != 0 ? gridData.data.length : data.length
               }
               onClick={({ e, item, value, rowIndex, colIndex }) => {
                 handleGridClick(item, value, type);
