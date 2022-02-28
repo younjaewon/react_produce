@@ -51,17 +51,21 @@ const SelfStandardManage = () => {
                 <table>
                   <tbody>
                       <tr>
-                    <td>기존유형</td>
-                    <td><input type="text" name="guideType" onChange={inputData}></input></td>
-                    <td>버전</td>
-                    <td><input type="text" name="revision" onChange={inputData}></input></td>
+                    <td style={{paddingRight:"10px"}}>기존유형</td>
+                    <td style={{paddingRight:"20px"}}>
+                        <input type="text" name="guideType" onChange={inputData}></input></td>
+                    <td style={{paddingRight:"10px"}}>버전</td>
+                    <td style={{paddingRight:"20px"}}>
+                        <input type="text" name="revision" onChange={inputData}></input></td>
                     </tr>
             
                     <tr>
-                    <td>파일이름</td>
-                    <td> <input type="text" name="fileName" onChange={inputData}></input></td>
-                    <td>파일경로</td>
-                    <td><input type="text" name="filePath" onChange={inputData}></input></td>
+                    <td style={{paddingRight:"10px"}}>파일이름</td>
+                    <td style={{paddingRight:"20px"}}>
+                        <input type="text" name="fileName" onChange={inputData}></input></td>
+                    <td style={{paddingRight:"10px"}}>파일경로</td>
+                    <td style={{paddingRight:"20px"}}>
+                        <input type="text" name="filePath" onChange={inputData}></input></td>
                     </tr>
                     
                   </tbody>
